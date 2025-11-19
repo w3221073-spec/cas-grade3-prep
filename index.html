@@ -13,6 +13,7 @@
             --light: #DFE6E9;
             --success: #00b894;
             --error: #d63031;
+            --timer-bg: #dfe6e9;
         }
 
         body {
@@ -38,10 +39,37 @@
             width: 90%;
             max-width: 600px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         h1 { margin-bottom: 10px; color: var(--secondary); }
         
+        /* Timer Styles */
+        .timer-container {
+            width: 100%;
+            background-color: rgba(255,255,255,0.2);
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .timer-bar {
+            height: 100%;
+            background-color: var(--success);
+            width: 100%;
+            transition: width 1s linear, background-color 0.5s;
+        }
+
+        .timer-text {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
         .status-bar {
             display: flex;
             justify-content: space-between;
@@ -80,6 +108,7 @@
 
         button.option:hover { transform: scale(1.02); background: #5649c0; }
         button.option:active { transform: scale(0.98); }
+        button.option:disabled { cursor: not-allowed; opacity: 0.7; }
 
         .feedback {
             margin-top: 15px;
@@ -93,7 +122,7 @@
 
         .hidden { display: none; }
 
-        #restart-btn {
+        #restart-btn, #start-mission-btn {
             background: var(--secondary);
             color: var(--dark);
             border: none;
@@ -102,37 +131,104 @@
             border-radius: 50px;
             cursor: pointer;
             margin-top: 20px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        #restart-btn:hover, #start-mission-btn:hover {
+            background: #00B1AD;
+            transform: translateY(-2px);
+        }
+
+        /* Home Screen Styles */
+        #home-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #home-screen h2 {
+            color: var(--secondary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: bounceIn 1.5s ease-out;
+        }
+
+        #home-screen p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .rocket {
+            font-size: 5rem;
+            animation: liftOff 2s ease-out infinite alternate;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes liftOff {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="status-bar">
-        <span id="score-display">⭐ Score: 0</span>
-        <span id="progress-display">Mission: 1/5</span>
+    <div id="home-screen">
+        <span class="rocket">🚀</span>
+        <h2>Welcome, Space Cadet Kaya!</h2>
+        <p>Your mission, should you choose to accept it, is to explore the cosmos of knowledge and conquer the MCAS challenges!</p>
+        <button id="start-mission-btn">Start Mission</button>
     </div>
 
-    <div id="quiz-area">
-        <div class="question-card">
-            <div id="question-text">Loading Mission Data...</div>
+    <div id="quiz-container" class="hidden">
+        <div class="status-bar">
+            <span id="score-display">⭐ Score: 0</span>
+            <span id="progress-display">Mission: 1/25</span>
         </div>
-        <div class="options-grid" id="options-container">
-            </div>
-        <div class="feedback" id="feedback-text"></div>
-    </div>
 
-    <div id="results-area" class="hidden">
-        <h2>🚀 Mission Complete!</h2>
-        <p id="final-score" style="font-size: 1.5rem;"></p>
-        <p id="message"></p>
-        <button id="restart-btn" onclick="initGame()">Re-launch Mission</button>
+        <div id="quiz-area">
+            <div class="timer-text" id="timer-text">⏱️ Oxygen Left: 60s</div>
+            <div class="timer-container">
+                <div class="timer-bar" id="timer-bar"></div>
+            </div>
+
+            <div class="question-card">
+                <div id="question-text">Loading Mission Data...</div>
+            </div>
+            <div class="options-grid" id="options-container">
+                </div>
+            <div class="feedback" id="feedback-text"></div>
+        </div>
+
+        <div id="results-area" class="hidden">
+            <h2>🚀 Mission Complete!</h2>
+            <p id="final-score" style="font-size: 1.5rem;"></p>
+            <p id="message"></p>
+            <button id="restart-btn" onclick="initGame()">Re-launch Mission</button>
+        </div>
     </div>
 </div>
 
 <script>
-    // MCAS Aligned Sample Data (Math & ELA Mixed)
-const questions = [
+    // MCAS Aligned Data (Math & ELA Mixed)
+    const questions = [
         // --- ORIGINAL 5 ---
         {
             question: "Select the two fractions that are equivalent to 1/2.",
@@ -265,34 +361,116 @@ const questions = [
 
     let currentQ = 0;
     let score = 0;
+    
+    // Timer Variables
+    let timeLeft = 60; // Seconds per question
+    const MAX_TIME = 60;
+    let timerInterval = null;
+
+    // DOM Elements
+    const homeScreen = document.getElementById('home-screen');
+    const quizContainer = document.getElementById('quiz-container');
+    const startMissionBtn = document.getElementById('start-mission-btn');
+    const quizArea = document.getElementById('quiz-area');
+    const resultsArea = document.getElementById('results-area');
+    const scoreDisplay = document.getElementById('score-display');
+    const progressDisplay = document.getElementById('progress-display');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const feedbackText = document.getElementById('feedback-text');
+    const timerText = document.getElementById('timer-text');
+    const timerBar = document.getElementById('timer-bar');
+    const finalScore = document.getElementById('final-score');
+    const message = document.getElementById('message');
+
+
+    // Event Listeners
+    startMissionBtn.addEventListener('click', startQuiz);
+
+    function startQuiz() {
+        homeScreen.classList.add('hidden');
+        quizContainer.classList.remove('hidden');
+        initGame(); // Initialize the quiz game
+    }
 
     function initGame() {
         currentQ = 0;
         score = 0;
-        document.getElementById('quiz-area').classList.remove('hidden');
-        document.getElementById('results-area').classList.add('hidden');
+        quizArea.classList.remove('hidden');
+        resultsArea.classList.add('hidden');
         updateStats();
         loadQuestion();
     }
 
+    function startTimer() {
+        clearInterval(timerInterval); // Clear any existing
+        timeLeft = MAX_TIME;
+        updateTimerVisuals();
+        
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            updateTimerVisuals();
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                handleTimeOut();
+            }
+        }, 1000);
+    }
+
+    function updateTimerVisuals() {
+        // Update Text
+        timerText.innerText = `⏱️ Oxygen Left: ${timeLeft}s`;
+        
+        // Update Bar Width
+        const percentage = (timeLeft / MAX_TIME) * 100;
+        timerBar.style.width = `${percentage}%`;
+
+        // Change Color based on urgency
+        if (percentage > 50) {
+            timerBar.style.backgroundColor = "#00b894"; // Green
+        } else if (percentage > 20) {
+            timerBar.style.backgroundColor = "#fdcb6e"; // Yellow
+        } else {
+            timerBar.style.backgroundColor = "#d63031"; // Red
+        }
+    }
+
+    function handleTimeOut() {
+        // Disable buttons
+        const buttons = document.querySelectorAll('.option');
+        buttons.forEach(b => b.disabled = true);
+        
+        // Show timeout msg
+        feedbackText.innerText = "⌛ Time's Up!";
+        feedbackText.style.color = "#d63031";
+        
+        setTimeout(() => {
+            nextQuestion();
+        }, 2000);
+    }
+
     function loadQuestion() {
         const q = questions[currentQ];
-        document.getElementById('question-text').innerText = q.question;
-        document.getElementById('feedback-text').innerText = "";
+        questionText.innerText = q.question;
+        feedbackText.innerText = "";
         
-        const container = document.getElementById('options-container');
-        container.innerHTML = '';
+        optionsContainer.innerHTML = '';
 
         q.options.forEach((opt, index) => {
             const btn = document.createElement('button');
             btn.className = 'option';
             btn.innerText = opt;
             btn.onclick = () => checkAnswer(index, btn);
-            container.appendChild(btn);
+            optionsContainer.appendChild(btn);
         });
+
+        startTimer(); // Start timer when question loads
     }
 
     function checkAnswer(selected, btnElement) {
+        clearInterval(timerInterval); // Stop timer immediately
+
         // Disable all buttons
         const buttons = document.querySelectorAll('.option');
         buttons.forEach(b => b.disabled = true);
@@ -300,42 +478,47 @@ const questions = [
         if (selected === questions[currentQ].correct) {
             score++;
             btnElement.classList.add('correct-anim');
-            document.getElementById('feedback-text').innerText = "✅ Correct! Great job!";
-            document.getElementById('feedback-text').style.color = "#00b894";
+            feedbackText.innerText = "✅ Correct! Great job!";
+            feedbackText.style.color = "#00b894";
         } else {
             btnElement.classList.add('wrong-anim');
-            document.getElementById('feedback-text').innerText = "❌ Not quite. Keep trying!";
-            document.getElementById('feedback-text').style.color = "#fab1a0";
+            feedbackText.innerText = "❌ Not quite. Keep trying!";
+            feedbackText.style.color = "#fab1a0";
         }
 
         updateStats();
 
         setTimeout(() => {
-            currentQ++;
-            if (currentQ < questions.length) {
-                loadQuestion();
-            } else {
-                showResults();
-            }
+            nextQuestion();
         }, 1500);
     }
 
+    function nextQuestion() {
+        currentQ++;
+        if (currentQ < questions.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
     function updateStats() {
-        document.getElementById('score-display').innerText = `⭐ Score: ${score}`;
-        document.getElementById('progress-display').innerText = `Mission: ${Math.min(currentQ + 1, questions.length)}/${questions.length}`;
+        scoreDisplay.innerText = `⭐ Score: ${score}`;
+        progressDisplay.innerText = `Mission: ${Math.min(currentQ + 1, questions.length)}/${questions.length}`;
     }
 
     function showResults() {
-        document.getElementById('quiz-area').classList.add('hidden');
-        document.getElementById('results-area').classList.remove('hidden');
-        document.getElementById('final-score').innerText = `You scored ${score} out of ${questions.length}`;
+        clearInterval(timerInterval);
+        quizArea.classList.add('hidden');
+        resultsArea.classList.remove('hidden');
+        finalScore.innerText = `You scored ${score} out of ${questions.length}`;
         
-        const msg = score === questions.length ? "🌟 Astronaut Status: COMMANDER!" : "👍 Good practice! Ready for liftoff!";
-        document.getElementById('message').innerText = msg;
+        const msg = score > (questions.length * 0.7) ? "🌟 Astronaut Status: COMMANDER!" : "👍 Good practice! Kaya, Ready for liftoff!";
+        message.innerText = msg;
     }
 
-    // Start
-    initGame();
+    // No need to call initGame() on load anymore, the home screen handles it.
+    // The home screen is shown by default via HTML, quizContainer is hidden.
 </script>
 
 </body>
