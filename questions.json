@@ -1,0 +1,152 @@
+[
+    {
+        "question": "Select the two fractions that are equivalent to 1/2.",
+        "options": ["2/4 and 3/6", "1/3 and 1/4", "2/3 and 4/6", "3/4 and 2/8"],
+        "correct": 0,
+        "hint": "Look for fractions where the top number is exactly half of the bottom number."
+    },
+    {
+        "question": "Solve: 7 × ? = 42",
+        "options": ["5", "6", "7", "8"],
+        "correct": 1,
+        "hint": "Skip count by 7s: 7, 14, 21, 28, 35..."
+    },
+    {
+        "question": "Which word is a noun in this sentence? 'The excited dog ran fast.'",
+        "options": ["Excited", "Ran", "Dog", "Fast"],
+        "correct": 2,
+        "hint": "A noun is a person, place, thing, or animal."
+    },
+    {
+        "question": "Round 438 to the nearest ten.",
+        "options": ["400", "430", "440", "500"],
+        "correct": 2,
+        "hint": "Look at the ones place (8). Is it 5 or higher? If yes, go up!"
+    },
+    {
+        "question": "Which shape is a quadrilateral?",
+        "options": ["Triangle", "Pentagon", "Rectangle", "Hexagon"],
+        "correct": 2,
+        "hint": "A quadrilateral has exactly four sides. 'Quad' means four."
+    },
+    {
+        "question": "What is the perimeter of a square with side length 5 inches?",
+        "options": ["20 inches", "25 inches", "15 inches", "10 inches"],
+        "correct": 0,
+        "hint": "Perimeter is the distance AROUND the shape. Add all 4 sides (5+5+5+5)."
+    },
+    {
+        "question": "Which fraction is larger: 1/3 or 1/8?",
+        "options": ["1/8", "1/3", "They are equal", "Cannot tell"],
+        "correct": 1,
+        "hint": "Think of a pizza. Would you want 1 slice out of 3, or 1 slice out of 8?"
+    },
+    {
+        "question": "If you have 24 apples and put them into 4 equal bags, how many are in each bag?",
+        "options": ["4", "5", "6", "8"],
+        "correct": 2,
+        "hint": "This is division. What number times 4 equals 24?"
+    },
+    {
+        "question": "What time is it if the small hand is on 3 and the big hand is on 12?",
+        "options": ["3:30", "12:15", "12:03", "3:00"],
+        "correct": 3,
+        "hint": "When the big hand is on 12, it is 'o'clock'."
+    },
+    {
+        "question": "Calculate: 300 + 40 + 5",
+        "options": ["3405", "345", "3045", "354"],
+        "correct": 1,
+        "hint": "Put the numbers in their places: Hundreds, Tens, and Ones."
+    },
+    {
+        "question": "Which number makes this true: 8 × __ = 64",
+        "options": ["7", "9", "8", "6"],
+        "correct": 2,
+        "hint": "Think of the rhyme: 'I ate and I ate until I got sick on the floor, 8 times 8 is 64.'"
+    },
+    {
+        "question": "How many minutes are in one hour?",
+        "options": ["100", "30", "60", "45"],
+        "correct": 2,
+        "hint": "When the minute hand goes all the way around the clock, it counts 60 minutes."
+    },
+    {
+        "question": "Find the area of a rectangle with sides 4cm and 6cm.",
+        "options": ["10 sq cm", "24 sq cm", "12 sq cm", "20 sq cm"],
+        "correct": 1,
+        "hint": "Area = Length × Width."
+    },
+    {
+        "question": "Which equation shows the Distributive Property: 4 × 7 = ?",
+        "options": ["(4×5) + (4×2)", "4 + 7", "7 × 4", "(4×2) + (4×1)"],
+        "correct": 0,
+        "hint": "Break the 7 into two smaller numbers (5 and 2)."
+    },
+    {
+        "question": "Subtract: 500 - 243",
+        "options": ["257", "357", "267", "343"],
+        "correct": 0,
+        "hint": "You will need to regroup (borrow) from the hundreds place."
+    },
+    {
+        "question": "Which word needs a capital letter? 'we are going to boston.'",
+        "options": ["we", "are", "going", "to"],
+        "correct": 0,
+        "hint": "Sentences always start with a capital letter."
+    },
+    {
+        "question": "Choose the correct plural for 'mouse'.",
+        "options": ["Mouses", "Mice", "Mice's", "Mouse's"],
+        "correct": 1,
+        "hint": "Mouse is an irregular noun. We don't just add 's'."
+    },
+    {
+        "question": "What is the main idea? 'Bats sleep in the day. They hunt at night.'",
+        "options": ["Bats like caves", "Bats are birds", "When bats sleep and hunt", "Bats are scary"],
+        "correct": 2,
+        "hint": "What are both sentences talking about? Sleeping and Hunting."
+    },
+    {
+        "question": "Which word is an adjective? 'The blue sky is pretty.'",
+        "options": ["Sky", "The", "Is", "Blue"],
+        "correct": 3,
+        "hint": "An adjective describes a noun. What color is the sky?"
+    },
+    {
+        "question": "What does 'impatient' mean?",
+        "options": ["Very patient", "Not patient", "Happy", "Sleeping"],
+        "correct": 1,
+        "hint": "The prefix 'im-' often means 'not'."
+    },
+    {
+        "question": "Select the correct spelling.",
+        "options": ["Beleive", "Believe", "Beleave", "Bileive"],
+        "correct": 1,
+        "hint": "Remember the rule: 'I before E, except after C'."
+    },
+    {
+        "question": "Which sentence has the correct punctuation?",
+        "options": ["Where are you going?", "Where are you going.", "Where are you going!", "Where, are you going?"],
+        "correct": 0,
+        "hint": "This sentence is asking a question."
+    },
+    {
+        "question": "What is the opposite of 'ancient'?",
+        "options": ["Old", "Modern", "Dusty", "Broken"],
+        "correct": 1,
+        "hint": "Ancient means very, very old. We need the opposite."
+    },
+    {
+        "question": "Which word connects these sentences? 'I like cake, ___ I don't like pie.'",
+        "options": ["And", "Or", "So", "But"],
+        "correct": 3,
+        "hint": "We use this word to show a contrast or difference."
+    },
+    {
+        "question": "Identify the verb: 'She whispered a secret.'",
+        "options": ["She", "Secret", "Whispered", "A"],
+        "correct": 2,
+        "hint": "A verb is an action word. What did she DO?"
+    }
+]
