@@ -73,10 +73,58 @@
         .status-bar {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
+
+        #pause-btn {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.1s;
+        }
+        #pause-btn:hover { transform: scale(1.05); }
+
+        /* Pause Overlay */
+        .pause-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 12, 30, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            border-radius: 20px;
+        }
+
+        .pause-overlay h2 {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        #resume-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #resume-btn:hover { transform: scale(1.05); }
 
         .question-card {
             background: white;
@@ -113,7 +161,7 @@
         .feedback {
             margin-top: 15px;
             font-size: 1.1rem;
-            min-height: 50px; /* Increased height for hints */
+            min-height: 50px;
             font-weight: bold;
             display: flex;
             align-items: center;
@@ -123,7 +171,7 @@
         .correct-anim { background-color: var(--success) !important; }
         .wrong-anim { background-color: var(--error) !important; }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
 
         #restart-btn, #start-mission-btn {
             background: var(--secondary);
@@ -194,21 +242,27 @@
 
 <div class="container">
     
-<div id="home-screen">
+    <div id="home-screen">
         <span class="rocket">🚀</span>
         <h2>Welcome, Space Cadet!</h2>
-        <p>Your mission, should you choose to accept it, is to explore the cosmos of knowledge and conquer the MCAS challenges!</p>
+        <p>Your mission: Explore the cosmos of knowledge and conquer the MCAS challenges!</p>
         <button id="start-mission-btn">Start Mission</button>
     </div>
 
-    
-<div id="quiz-container" class="hidden">
+    <div id="quiz-container" class="hidden">
         <div class="status-bar">
             <span id="score-display">⭐ Score: 0</span>
             <span id="progress-display">Mission: 1/25</span>
+            <button id="pause-btn" onclick="togglePause()">⏸️ Pause</button>
         </div>
 
         <div id="quiz-area">
+            <div id="pause-screen" class="pause-overlay hidden">
+                <h2>Mission Paused</h2>
+                <p>Systems are in standby mode.</p>
+                <button id="resume-btn" onclick="togglePause()">▶ Resume Mission</button>
+            </div>
+
             <div class="timer-text" id="timer-text">⏱️ Oxygen Left: 60s</div>
             <div class="timer-container">
                 <div class="timer-bar" id="timer-bar"></div>
@@ -396,6 +450,7 @@
     let timeLeft = 60; // Seconds per question
     const MAX_TIME = 60;
     let timerInterval = null;
+    let isPaused = false;
 
     // DOM Elements
     const homeScreen = document.getElementById('home-screen');
@@ -412,6 +467,8 @@
     const timerBar = document.getElementById('timer-bar');
     const finalScore = document.getElementById('final-score');
     const message = document.getElementById('message');
+    const pauseBtn = document.getElementById('pause-btn');
+    const pauseScreen = document.getElementById('pause-screen');
 
 
     // Event Listeners
@@ -432,11 +489,37 @@
         loadQuestion();
     }
 
-    function startTimer() {
-        clearInterval(timerInterval); // Clear any existing
+    // --- Timer Logic ---
+
+    function togglePause() {
+        isPaused = !isPaused;
+
+        if (isPaused) {
+            // Stop the clock, show overlay
+            clearInterval(timerInterval);
+            pauseScreen.classList.remove('hidden');
+            pauseBtn.innerText = "▶ Resume";
+        } else {
+            // Resume clock, hide overlay
+            startCountdown(); // Resume using current timeLeft
+            pauseScreen.classList.add('hidden');
+            pauseBtn.innerText = "⏸️ Pause";
+        }
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
         timeLeft = MAX_TIME;
+        isPaused = false;
+        pauseScreen.classList.add('hidden');
+        pauseBtn.innerText = "⏸️ Pause";
+        pauseBtn.disabled = false;
         updateTimerVisuals();
-        
+        startCountdown();
+    }
+
+    function startCountdown() {
+        clearInterval(timerInterval); // Safety clear
         timerInterval = setInterval(() => {
             timeLeft--;
             updateTimerVisuals();
@@ -470,6 +553,7 @@
         // Disable buttons
         const buttons = document.querySelectorAll('.option');
         buttons.forEach(b => b.disabled = true);
+        pauseBtn.disabled = true; // Cannot pause when time is up
         
         // Show timeout msg
         feedbackText.innerText = "⌛ Time's Up!";
@@ -479,6 +563,8 @@
             nextQuestion();
         }, 2000);
     }
+
+    // --- Quiz Logic ---
 
     function loadQuestion() {
         const q = questions[currentQ];
@@ -495,11 +581,12 @@
             optionsContainer.appendChild(btn);
         });
 
-        startTimer(); // Start timer when question loads
+        resetTimer(); // Start fresh timer for new question
     }
 
     function checkAnswer(selected, btnElement) {
         clearInterval(timerInterval); // Stop timer immediately
+        pauseBtn.disabled = true; // Disable pause during feedback
 
         // Disable all buttons
         const buttons = document.querySelectorAll('.option');
@@ -511,7 +598,6 @@
             feedbackText.innerText = "✅ Correct! Great job!";
             feedbackText.style.color = "#00b894";
             
-            // Short delay for correct answers
             setTimeout(nextQuestion, 1500);
         } else {
             btnElement.classList.add('wrong-anim');
@@ -519,7 +605,7 @@
             feedbackText.innerText = "💡 Hint: " + questions[currentQ].hint;
             feedbackText.style.color = "#fab1a0";
             
-            // LONGER delay for incorrect answers so they can read the hint
+            // Wait 5 seconds so they can read hint, then next
             setTimeout(nextQuestion, 5000);
         }
 
@@ -544,6 +630,7 @@
         clearInterval(timerInterval);
         quizArea.classList.add('hidden');
         resultsArea.classList.remove('hidden');
+        pauseBtn.classList.add('hidden'); // Hide pause button on results
         finalScore.innerText = `You scored ${score} out of ${questions.length}`;
         
         const msg = score > (questions.length * 0.7) ? "🌟 Astronaut Status: COMMANDER!" : "👍 Good practice! Ready for liftoff!";
