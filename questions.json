@@ -1,152 +1,602 @@
 [
     {
-        "question": "Select the two fractions that are equivalent to 1/2.",
-        "options": ["2/4 and 3/6", "1/3 and 1/4", "2/3 and 4/6", "3/4 and 2/8"],
-        "correct": 0,
-        "hint": "Look for fractions where the top number is exactly half of the bottom number."
-    },
-    {
-        "question": "Solve: 7 × ? = 42",
-        "options": ["5", "6", "7", "8"],
+        "question": "What is 345 rounded to the nearest ten?",
+        "options": ["340", "350", "300", "400"],
         "correct": 1,
-        "hint": "Skip count by 7s: 7, 14, 21, 28, 35..."
+        "hint": "Look at the ones place (5). If it's 5 or higher, round up."
     },
     {
-        "question": "Which word is a noun in this sentence? 'The excited dog ran fast.'",
-        "options": ["Excited", "Ran", "Dog", "Fast"],
-        "correct": 2,
-        "hint": "A noun is a person, place, thing, or animal."
-    },
-    {
-        "question": "Round 438 to the nearest ten.",
-        "options": ["400", "430", "440", "500"],
-        "correct": 2,
-        "hint": "Look at the ones place (8). Is it 5 or higher? If yes, go up!"
-    },
-    {
-        "question": "Which shape is a quadrilateral?",
-        "options": ["Triangle", "Pentagon", "Rectangle", "Hexagon"],
-        "correct": 2,
-        "hint": "A quadrilateral has exactly four sides. 'Quad' means four."
-    },
-    {
-        "question": "What is the perimeter of a square with side length 5 inches?",
-        "options": ["20 inches", "25 inches", "15 inches", "10 inches"],
-        "correct": 0,
-        "hint": "Perimeter is the distance AROUND the shape. Add all 4 sides (5+5+5+5)."
-    },
-    {
-        "question": "Which fraction is larger: 1/3 or 1/8?",
-        "options": ["1/8", "1/3", "They are equal", "Cannot tell"],
+        "question": "Which sentence uses an apostrophe correctly?",
+        "options": ["The dogs bone.", "The dog's bone.", "The dogs's bone.", "The do'gs bone."],
         "correct": 1,
-        "hint": "Think of a pizza. Would you want 1 slice out of 3, or 1 slice out of 8?"
+        "hint": "The bone belongs to one dog. Put the apostrophe before the 's'."
     },
     {
-        "question": "If you have 24 apples and put them into 4 equal bags, how many are in each bag?",
-        "options": ["4", "5", "6", "8"],
+        "question": "Solve: 8 x 7 = ?",
+        "options": ["54", "56", "64", "49"],
+        "correct": 1,
+        "hint": "Remember the rhyme: 5, 6, 7, 8... 56 is 7 times 8."
+    },
+    {
+        "question": "Which word is a synonym for 'gigantic'?",
+        "options": ["Tiny", "Huge", "Soft", "Quiet"],
+        "correct": 1,
+        "hint": "Synonym means the 'Same'. Gigantic means very big."
+    },
+    {
+        "question": "What fraction of the shape is shaded if 3 out of 4 parts are colored?",
+        "options": ["1/4", "3/4", "4/3", "2/4"],
+        "correct": 1,
+        "hint": "The top number (numerator) counts the colored parts."
+    },
+    {
+        "question": "Identify the verb: 'The bright sun shines on the water.'",
+        "options": ["Sun", "Bright", "Shines", "Water"],
         "correct": 2,
-        "hint": "This is division. What number times 4 equals 24?"
+        "hint": "A verb is an action. What is the sun doing?"
     },
     {
-        "question": "What time is it if the small hand is on 3 and the big hand is on 12?",
-        "options": ["3:30", "12:15", "12:03", "3:00"],
+        "question": "Calculate the perimeter of a rectangle with length 4cm and width 3cm.",
+        "options": ["7 cm", "12 cm", "14 cm", "20 cm"],
+        "correct": 2,
+        "hint": "Add up ALL four sides: 4 + 3 + 4 + 3."
+    },
+    {
+        "question": "Which word is spelled correctly?",
+        "options": ["Definately", "Definitly", "Definitely", "Defanitely"],
+        "correct": 2,
+        "hint": "Think of the word 'finite' in the middle."
+    },
+    {
+        "question": "What is 45 divided by 9?",
+        "options": ["6", "4", "5", "9"],
+        "correct": 2,
+        "hint": "Think: What number times 9 equals 45?"
+    },
+    {
+        "question": "Choose the correct homophone: 'I ___ a loud noise.'",
+        "options": ["Here", "Hear", "Hair", "Hare"],
+        "correct": 1,
+        "hint": "You hear with your Ear."
+    },
+    {
+        "question": "What time is 15 minutes after 2:30?",
+        "options": ["2:15", "3:00", "2:45", "2:35"],
+        "correct": 2,
+        "hint": "Add 15 to the minutes: 30 + 15 = 45."
+    },
+    {
+        "question": "Which number is odd?",
+        "options": ["24", "32", "18", "27"],
         "correct": 3,
-        "hint": "When the big hand is on 12, it is 'o'clock'."
+        "hint": "Odd numbers end in 1, 3, 5, 7, or 9."
     },
     {
-        "question": "Calculate: 300 + 40 + 5",
-        "options": ["3405", "345", "3045", "354"],
-        "correct": 1,
-        "hint": "Put the numbers in their places: Hundreds, Tens, and Ones."
-    },
-    {
-        "question": "Which number makes this true: 8 × __ = 64",
-        "options": ["7", "9", "8", "6"],
+        "question": "Identify the adjective: 'The fuzzy caterpillar ate a leaf.'",
+        "options": ["Caterpillar", "Ate", "Fuzzy", "Leaf"],
         "correct": 2,
-        "hint": "Think of the rhyme: 'I ate and I ate until I got sick on the floor, 8 times 8 is 64.'"
+        "hint": "An adjective describes a noun. What kind of caterpillar was it?"
     },
     {
-        "question": "How many minutes are in one hour?",
-        "options": ["100", "30", "60", "45"],
-        "correct": 2,
-        "hint": "When the minute hand goes all the way around the clock, it counts 60 minutes."
+        "question": "Subtract: 600 - 235",
+        "options": ["365", "465", "435", "375"],
+        "correct": 0,
+        "hint": "You need to regroup across the zeros."
     },
     {
-        "question": "Find the area of a rectangle with sides 4cm and 6cm.",
-        "options": ["10 sq cm", "24 sq cm", "12 sq cm", "20 sq cm"],
+        "question": "What is the main idea? 'Bees make honey. They fly flower to flower collecting nectar.'",
+        "options": ["Flowers are pretty", "How bees make honey", "Bees are scary", "Honey is sweet"],
         "correct": 1,
-        "hint": "Area = Length × Width."
+        "hint": "The sentences describe the work bees do."
     },
     {
-        "question": "Which equation shows the Distributive Property: 4 × 7 = ?",
-        "options": ["(4×5) + (4×2)", "4 + 7", "7 × 4", "(4×2) + (4×1)"],
-        "correct": 0,
-        "hint": "Break the 7 into two smaller numbers (5 and 2)."
-    },
-    {
-        "question": "Subtract: 500 - 243",
-        "options": ["257", "357", "267", "343"],
-        "correct": 0,
-        "hint": "You will need to regroup (borrow) from the hundreds place."
-    },
-    {
-        "question": "Which word needs a capital letter? 'we are going to boston.'",
-        "options": ["we", "are", "going", "to"],
-        "correct": 0,
-        "hint": "Sentences always start with a capital letter."
-    },
-    {
-        "question": "Choose the correct plural for 'mouse'.",
-        "options": ["Mouses", "Mice", "Mice's", "Mouse's"],
+        "question": "Which shape has 6 sides?",
+        "options": ["Pentagon", "Hexagon", "Octagon", "Triangle"],
         "correct": 1,
-        "hint": "Mouse is an irregular noun. We don't just add 's'."
+        "hint": "Hexagon has an 'x' like the number Six."
     },
     {
-        "question": "What is the main idea? 'Bats sleep in the day. They hunt at night.'",
-        "options": ["Bats like caves", "Bats are birds", "When bats sleep and hunt", "Bats are scary"],
-        "correct": 2,
-        "hint": "What are both sentences talking about? Sleeping and Hunting."
+        "question": "Complete the pattern: 4, 8, 12, 16, __",
+        "options": ["18", "20", "22", "24"],
+        "correct": 1,
+        "hint": "The pattern is adding 4 each time."
     },
     {
-        "question": "Which word is an adjective? 'The blue sky is pretty.'",
-        "options": ["Sky", "The", "Is", "Blue"],
+        "question": "Which word needs capitalization? 'my friend lives in florida.'",
+        "options": ["my", "lives", "friend", "florida"],
         "correct": 3,
-        "hint": "An adjective describes a noun. What color is the sky?"
+        "hint": "Florida is the name of a specific place (proper noun)."
     },
     {
-        "question": "What does 'impatient' mean?",
-        "options": ["Very patient", "Not patient", "Happy", "Sleeping"],
-        "correct": 1,
-        "hint": "The prefix 'im-' often means 'not'."
-    },
-    {
-        "question": "Select the correct spelling.",
-        "options": ["Beleive", "Believe", "Beleave", "Bileive"],
-        "correct": 1,
-        "hint": "Remember the rule: 'I before E, except after C'."
-    },
-    {
-        "question": "Which sentence has the correct punctuation?",
-        "options": ["Where are you going?", "Where are you going.", "Where are you going!", "Where, are you going?"],
-        "correct": 0,
-        "hint": "This sentence is asking a question."
-    },
-    {
-        "question": "What is the opposite of 'ancient'?",
-        "options": ["Old", "Modern", "Dusty", "Broken"],
-        "correct": 1,
-        "hint": "Ancient means very, very old. We need the opposite."
-    },
-    {
-        "question": "Which word connects these sentences? 'I like cake, ___ I don't like pie.'",
-        "options": ["And", "Or", "So", "But"],
-        "correct": 3,
-        "hint": "We use this word to show a contrast or difference."
-    },
-    {
-        "question": "Identify the verb: 'She whispered a secret.'",
-        "options": ["She", "Secret", "Whispered", "A"],
+        "question": "What represents the '3' in 3,420?",
+        "options": ["30", "300", "3,000", "3"],
         "correct": 2,
-        "hint": "A verb is an action word. What did she DO?"
+        "hint": "The 3 is in the thousands place."
+    },
+    {
+        "question": "Select the correct pronoun: '___ went to the store.'",
+        "options": ["Her", "Him", "She", "Them"],
+        "correct": 2,
+        "hint": "Use a subject pronoun like 'She' or 'He' at the start of a sentence."
+    },
+    {
+        "question": "Is 2/3 greater than, less than, or equal to 2/3?",
+        "options": ["Greater >", "Less <", "Equal =", "Unknown"],
+        "correct": 2,
+        "hint": "The numbers are exactly the same."
+    },
+    {
+        "question": "What is the plural of 'child'?",
+        "options": ["Childs", "Children", "Childrens", "Child's"],
+        "correct": 1,
+        "hint": "Child is an irregular noun. It changes form completely."
+    },
+    {
+        "question": "Solve: (3 x 2) + 5 = ?",
+        "options": ["10", "11", "16", "21"],
+        "correct": 1,
+        "hint": "Do the multiplication inside the parentheses first: 6 + 5."
+    },
+    {
+        "question": "Which word is an antonym (opposite) for 'difficult'?",
+        "options": ["Hard", "Easy", "Complex", "Tough"],
+        "correct": 1,
+        "hint": "What is the opposite of hard?"
+    },
+    {
+        "question": "How many milliliters are in 1 liter?",
+        "options": ["10", "100", "1,000", "10,000"],
+        "correct": 2,
+        "hint": "Milli means one thousandth. There are 1,000 mL in 1 L."
+    },
+    {
+        "question": "Identify the prefix in the word 'rewrite'.",
+        "options": ["write", "re", "te", "rew"],
+        "correct": 1,
+        "hint": "A prefix comes at the start of the word."
+    },
+    {
+        "question": "Area of a square with side length 9m?",
+        "options": ["18 sq m", "81 sq m", "36 sq m", "27 sq m"],
+        "correct": 1,
+        "hint": "Area = Side x Side (9 x 9)."
+    },
+    {
+        "question": "Which sentence is a question?",
+        "options": ["I like pizza.", "Do you like pizza?", "Eat your pizza!", "Pizza is good."],
+        "correct": 1,
+        "hint": "Look for the sentence that asks something and ends with a '?'."
+    },
+    {
+        "question": "Round 86 to the nearest ten.",
+        "options": ["80", "90", "100", "85"],
+        "correct": 1,
+        "hint": "6 is higher than 5, so round up to the next ten."
+    },
+    {
+        "question": "Which is a compound word?",
+        "options": ["Pancake", "Running", "Teacher", "Happy"],
+        "correct": 0,
+        "hint": "Two words joined together: Pan + Cake."
+    },
+    {
+        "question": "How many sides does a triangle have?",
+        "options": ["2", "3", "4", "5"],
+        "correct": 1,
+        "hint": "Tri- means three."
+    },
+    {
+        "question": "Choose the correct usage: 'Their/There/They're going to the park.'",
+        "options": ["Their", "There", "They're"],
+        "correct": 2,
+        "hint": "You mean 'They are'. Use the contraction."
+    },
+    {
+        "question": "What is 6 x 6?",
+        "options": ["30", "36", "42", "24"],
+        "correct": 1,
+        "hint": "Six groups of six."
+    },
+    {
+        "question": "Which part of speech describes an action?",
+        "options": ["Noun", "Verb", "Adjective", "Pronoun"],
+        "correct": 1,
+        "hint": "Words like run, jump, and sleep are verbs."
+    },
+    {
+        "question": "If you buy a toy for $5.50 and pay with $10.00, what is your change?",
+        "options": ["$5.50", "$4.50", "$3.50", "$4.00"],
+        "correct": 1,
+        "hint": "Count up from 5.50 to 6.00, then to 10.00."
+    },
+    {
+        "question": "What genre is a story about magic and dragons?",
+        "options": ["Non-fiction", "Biography", "Fantasy", "History"],
+        "correct": 2,
+        "hint": "Fantasy stories have things that cannot happen in real life."
+    },
+    {
+        "question": "Which fraction is equivalent to 2/4?",
+        "options": ["1/3", "1/2", "1/5", "2/3"],
+        "correct": 1,
+        "hint": "Simplify 2/4 by dividing top and bottom by 2."
+    },
+    {
+        "question": "Correct the sentence: 'me and sam went home.'",
+        "options": ["Sam and I went home.", "Me and Sam goed home.", "I and Sam went home.", "Sam and me goes home."],
+        "correct": 0,
+        "hint": "Put the other person first, and use 'I' for the subject."
+    },
+    {
+        "question": "What is 325 + 143?",
+        "options": ["468", "458", "568", "467"],
+        "correct": 0,
+        "hint": "Add ones: 5+3. Add tens: 2+4. Add hundreds: 3+1."
+    },
+    {
+        "question": "What does the prefix 'un-' mean (e.g., unhappy)?",
+        "options": ["Very", "Not", "Again", "Before"],
+        "correct": 1,
+        "hint": "If you are unhappy, you are NOT happy."
+    },
+    {
+        "question": "How many grams in a kilogram?",
+        "options": ["100", "10", "1,000", "500"],
+        "correct": 2,
+        "hint": "Kilo- means 1,000."
+    },
+    {
+        "question": "Which word rhymes with 'bear'?",
+        "options": ["Fear", "Near", "Chair", "Far"],
+        "correct": 2,
+        "hint": "Listen to the sound: Bear, Chair."
+    },
+    {
+        "question": "Solve for x: 15 - x = 10",
+        "options": ["2", "5", "10", "25"],
+        "correct": 1,
+        "hint": "15 minus WHAT equals 10?"
+    },
+    {
+        "question": "Who is the narrator of a story?",
+        "options": ["The bad guy", "The person telling the story", "The main character", "The reader"],
+        "correct": 1,
+        "hint": "The narrator narrates (tells) the events."
+    },
+    {
+        "question": "Compare: 345 ___ 354",
+        "options": ["<", ">", "=", "+"],
+        "correct": 0,
+        "hint": "Look at the tens place. 40 is less than 50."
+    },
+    {
+        "question": "Which word is a conjunction?",
+        "options": ["Run", "House", "And", "Slowly"],
+        "correct": 2,
+        "hint": "Conjunctions connect words (And, But, Or)."
+    },
+    {
+        "question": "How many vertices (corners) does a cube have?",
+        "options": ["4", "6", "8", "12"],
+        "correct": 2,
+        "hint": "Count the corners on a dice (top 4 + bottom 4)."
+    },
+    {
+        "question": "Past tense of 'run'?",
+        "options": ["Runned", "Ran", "Running", "Ranned"],
+        "correct": 1,
+        "hint": "It is irregular. Yesterday, I ___."
+    },
+    {
+        "question": "What is 9 x 0?",
+        "options": ["9", "1", "0", "90"],
+        "correct": 2,
+        "hint": "Anything times zero is zero."
+    },
+    {
+        "question": "What is a glossary?",
+        "options": ["A map", "A list of definitions", "A story", "A title"],
+        "correct": 1,
+        "hint": "Found at the back of a book to tell you what words mean."
+    },
+    {
+        "question": "What is 1/2 + 1/2?",
+        "options": ["1/4", "2/4", "1", "2"],
+        "correct": 2,
+        "hint": "Two halves make a whole."
+    },
+    {
+        "question": "Find the adverb: 'The turtle walked slowly.'",
+        "options": ["Turtle", "Walked", "Slowly", "The"],
+        "correct": 2,
+        "hint": "Adverbs usually end in -ly and describe HOW something happened."
+    },
+    {
+        "question": "Which is a multiple of 5?",
+        "options": ["12", "18", "25", "31"],
+        "correct": 2,
+        "hint": "Multiples of 5 end in 0 or 5."
+    },
+    {
+        "question": "Correct spelling:",
+        "options": ["Because", "Becuz", "Beccause", "Becuase"],
+        "correct": 0,
+        "hint": "Big Elephants Can Always Understand Small Elephants."
+    },
+    {
+        "question": "Perimeter of a triangle with sides 3, 3, and 3?",
+        "options": ["6", "9", "12", "3"],
+        "correct": 1,
+        "hint": "Add all the sides: 3 + 3 + 3."
+    },
+    {
+        "question": "What does 'misunderstand' mean?",
+        "options": ["Understand perfectly", "Not understand correctly", "Listen", "Speak"],
+        "correct": 1,
+        "hint": "The prefix 'mis-' means wrong or badly."
+    },
+    {
+        "question": "Which is the largest number?",
+        "options": ["1,002", "1,200", "1,020", "1,002"],
+        "correct": 1,
+        "hint": "Look at the hundreds place."
+    },
+    {
+        "question": "Identify the subject: 'The blue whale swam.'",
+        "options": ["Swam", "Blue", "The blue whale", "Water"],
+        "correct": 2,
+        "hint": "The subject is who or what is doing the action."
+    },
+    {
+        "question": "How many hours in a day?",
+        "options": ["12", "24", "60", "365"],
+        "correct": 1,
+        "hint": "Day and night together."
+    },
+    {
+        "question": "Which word shows possession?",
+        "options": ["Cats", "Cat's", "Cats'", "Cat"],
+        "correct": 1,
+        "hint": "Look for the apostrophe s ('s)."
+    },
+    {
+        "question": "Solve: 80 divided by 8",
+        "options": ["8", "10", "0", "1"],
+        "correct": 1,
+        "hint": "What number times 8 equals 80?"
+    },
+    {
+        "question": "Which is a complete sentence?",
+        "options": ["Running fast.", "The big dog.", "She ate an apple.", "Under the table."],
+        "correct": 2,
+        "hint": "A complete sentence needs a subject and a verb."
+    },
+    {
+        "question": "What is the value of 7 in 72?",
+        "options": ["7", "70", "700", "2"],
+        "correct": 1,
+        "hint": "It is in the tens place."
+    },
+    {
+        "question": "Choose the contraction for 'do not'.",
+        "options": ["Don't", "Doon't", "Dont'", "Do'nt"],
+        "correct": 0,
+        "hint": "Replace the 'o' in 'not' with an apostrophe."
+    },
+    {
+        "question": "Which operation would you use to combine groups?",
+        "options": ["Subtraction", "Multiplication", "Division", "Estimating"],
+        "correct": 1,
+        "hint": "Combining equal groups is multiplication (or addition)."
+    },
+    {
+        "question": "What is a stanza?",
+        "options": ["A paragraph in a story", "A group of lines in a poem", "A type of cheese", "A chapter"],
+        "correct": 1,
+        "hint": "Poems are built of stanzas."
+    },
+    {
+        "question": "500 + 40 + 2 =",
+        "options": ["542", "5042", "524", "5402"],
+        "correct": 0,
+        "hint": "Put the digits in place value order: Hundreds, Tens, Ones."
+    },
+    {
+        "question": "Which word is a proper noun?",
+        "options": ["city", "man", "London", "dog"],
+        "correct": 2,
+        "hint": "Proper nouns are specific names and start with capital letters."
+    },
+    {
+        "question": "What shape is a soup can?",
+        "options": ["Sphere", "Cube", "Cylinder", "Cone"],
+        "correct": 2,
+        "hint": "Circular top and bottom, with straight sides."
+    },
+    {
+        "question": "Synonym for 'fast'?",
+        "options": ["Slow", "Quick", "Stop", "Walk"],
+        "correct": 1,
+        "hint": "Which word means the same as fast?"
+    },
+    {
+        "question": "Which fraction equals 1?",
+        "options": ["1/2", "3/4", "4/4", "0/4"],
+        "correct": 2,
+        "hint": "If the numerator and denominator are the same, it is 1."
+    },
+    {
+        "question": "Correct punctuation: 'Wow, that is huge'",
+        "options": ["?", ".", "!", ","],
+        "correct": 2,
+        "hint": "Wow shows excitement, so use an exclamation mark."
+    },
+    {
+        "question": "20 x 5 =",
+        "options": ["100", "120", "50", "25"],
+        "correct": 0,
+        "hint": "2 x 5 = 10, then add the zero."
+    },
+    {
+        "question": "What happens at the climax of a story?",
+        "options": ["The introduction", "The most exciting part", "The ending", "The title"],
+        "correct": 1,
+        "hint": "It is the high point of the action."
+    },
+    {
+        "question": "How many inches in a foot?",
+        "options": ["10", "12", "100", "3"],
+        "correct": 1,
+        "hint": "Look at a ruler. It usually goes up to 12."
+    },
+    {
+        "question": "Antonym for 'Start'?",
+        "options": ["Begin", "Go", "Finish", "Run"],
+        "correct": 2,
+        "hint": "Opposite of start."
+    },
+    {
+        "question": "45 - 20 =",
+        "options": ["25", "15", "35", "65"],
+        "correct": 0,
+        "hint": "Subtract the tens: 4 - 2. Keep the ones."
+    },
+    {
+        "question": "Which word has a suffix?",
+        "options": ["Unlock", "Helpful", "Preheat", "Cat"],
+        "correct": 1,
+        "hint": "A suffix is at the end. -ful."
+    },
+    {
+        "question": "Which number is even?",
+        "options": ["31", "45", "88", "9"],
+        "correct": 2,
+        "hint": "Even numbers end in 0, 2, 4, 6, 8."
+    },
+    {
+        "question": "Author's purpose: To entertain?",
+        "options": ["A math book", "A comic book", "A dictionary", "A recipe"],
+        "correct": 1,
+        "hint": "Which one is for fun?"
+    },
+    {
+        "question": "11 x 2 =",
+        "options": ["21", "22", "12", "20"],
+        "correct": 1,
+        "hint": "Double 11."
+    },
+    {
+        "question": "Which word refers to a place?",
+        "options": ["There", "Their", "They're", "Three"],
+        "correct": 0,
+        "hint": "There has 'here' inside it."
+    },
+    {
+        "question": "A polygon with 5 sides?",
+        "options": ["Hexagon", "Triangle", "Pentagon", "Square"],
+        "correct": 2,
+        "hint": "Pentagon. Think of a Pen fitting in 5 fingers."
+    },
+    {
+        "question": "Correct capitalization: 'dr. smith'",
+        "options": ["Dr. Smith", "dr. Smith", "Dr. smith", "dr. smith"],
+        "correct": 0,
+        "hint": "Titles and Names both need capitals."
+    },
+    {
+        "question": "100 divided by 10?",
+        "options": ["10", "100", "1", "0"],
+        "correct": 0,
+        "hint": "Remove one zero."
+    },
+    {
+        "question": "Meaning of 'preheat'?",
+        "options": ["Heat after", "Heat before", "Don't heat", "Cool down"],
+        "correct": 1,
+        "hint": "Prefix 'pre-' means before."
+    },
+    {
+        "question": "Which coins make $0.25?",
+        "options": ["2 Dimes and 1 Nickel", "3 Nickels", "20 Pennies", "1 Dime"],
+        "correct": 0,
+        "hint": "Dime=10, Nickel=5. 10+10+5 = 25."
+    },
+    {
+        "question": "Plural of 'leaf'?",
+        "options": ["Leafs", "Leaves", "Leavs", "Leafes"],
+        "correct": 1,
+        "hint": "Change the 'f' to 'v' and add 'es'."
+    },
+    {
+        "question": "7 x 3 =",
+        "options": ["20", "21", "24", "14"],
+        "correct": 1,
+        "hint": "Count by 7s: 7, 14, 21."
+    },
+    {
+        "question": "Which is a fact?",
+        "options": ["Ice cream is the best.", "Dogs are cute.", "Water freezes at 32 degrees.", "Blue is a nice color."],
+        "correct": 2,
+        "hint": "A fact can be proven true. Opinions are what you feel."
+    },
+    {
+        "question": "What shape is a basketball?",
+        "options": ["Circle", "Sphere", "Round", "Disk"],
+        "correct": 1,
+        "hint": "A 3D circle is called a sphere."
+    },
+    {
+        "question": "Correct pronoun: 'The book belongs to John. It is ___.'",
+        "options": ["His", "Him", "He", "Her"],
+        "correct": 0,
+        "hint": "Possessive pronoun for a boy."
+    },
+    {
+        "question": "30 + 20 + 10 =",
+        "options": ["50", "60", "70", "100"],
+        "correct": 1,
+        "hint": "3+2+1 = 6. Add the zero."
+    },
+    {
+        "question": "Which word describes 'how' you run?",
+        "options": ["Fast", "Runner", "Sneakers", "Track"],
+        "correct": 0,
+        "hint": "You are looking for an adjective or adverb."
+    },
+    {
+        "question": "If a pattern is Square, Circle, Square, Circle... what is next?",
+        "options": ["Circle", "Square", "Triangle", "Star"],
+        "correct": 1,
+        "hint": "It repeats AB AB."
+    },
+    {
+        "question": "Meaning of 'nonfiction'?",
+        "options": ["Not true", "True/Real", "Fake", "Fantasy"],
+        "correct": 1,
+        "hint": "Non-fiction means NOT fake."
+    },
+    {
+        "question": "60 minutes is equal to?",
+        "options": ["1 Hour", "1 Day", "1 Second", "1 Week"],
+        "correct": 0,
+        "hint": "Look at a clock."
+    },
+    {
+        "question": "Spell the number 40.",
+        "options": ["Fourty", "Forty", "Fortey", "Fourtey"],
+        "correct": 1,
+        "hint": "Drop the 'u' from four."
+    },
+    {
+        "question": "12 - 4 =",
+        "options": ["6", "7", "8", "9"],
+        "correct": 2,
+        "hint": "Count backwards from 12."
+    },
+    {
+        "question": "What is a biography?",
+        "options": ["A story about a person's life", "A science book", "A map book", "A made up story"],
+        "correct": 0,
+        "hint": "Bio- means life."
     }
 ]
