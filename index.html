@@ -5,38 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCAS Space Mission: Grade 3</title>
     <style>
-        /* SAME CSS AS BEFORE - NO CHANGES NEEDED HERE */
         :root { --primary: #6C5CE7; --secondary: #00CEC9; --accent: #FAB1A0; --dark: #2D3436; --light: #DFE6E9; --success: #00b894; --error: #d63031; }
         body { font-family: 'Verdana', sans-serif; background-color: #0c0c1e; color: white; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-image: radial-gradient(white 1px, transparent 0); background-size: 40px 40px; }
         .container { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); border: 1px solid rgba(255, 255, 255, 0.18); width: 90%; max-width: 600px; text-align: center; position: relative; overflow: hidden; }
         h1 { margin-bottom: 10px; color: var(--secondary); }
+        
+        /* Timer */
         .timer-container { width: 100%; background-color: rgba(255,255,255,0.2); height: 10px; border-radius: 5px; margin-bottom: 15px; overflow: hidden; position: relative; }
         .timer-bar { height: 100%; background-color: var(--success); width: 100%; transition: width 1s linear, background-color 0.5s; }
         .timer-text { font-size: 0.9rem; margin-bottom: 10px; font-weight: bold; color: var(--secondary); }
+        
+        /* Status Bar */
         .status-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 1.1rem; font-weight: bold; }
         #pause-btn { background: var(--accent); color: var(--dark); border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; font-weight: bold; transition: transform 0.1s; }
-        #pause-btn:hover { transform: scale(1.05); }
-        .pause-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 12, 30, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; border-radius: 20px; }
-        .pause-overlay h2 { color: var(--secondary); font-size: 2rem; margin-bottom: 1rem; }
-        #resume-btn { background: var(--success); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        /* Question Area */
         .question-card { background: white; color: var(--dark); padding: 20px; border-radius: 15px; margin-bottom: 20px; font-size: 1.3rem; border: 4px solid var(--primary); }
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
         button.option { background: var(--primary); border: none; padding: 15px; color: white; font-size: 1.1rem; border-radius: 10px; cursor: pointer; transition: transform 0.1s, background 0.2s; font-weight: bold; }
         button.option:hover { transform: scale(1.02); background: #5649c0; }
         button.option:active { transform: scale(0.98); }
         button.option:disabled { cursor: not-allowed; opacity: 0.7; }
-        .feedback { margin-top: 15px; font-size: 1.1rem; min-height: 50px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        
+        /* Feedback & Navigation */
+        .feedback { margin-top: 15px; font-size: 1.1rem; min-height: 60px; font-weight: bold; display: flex; align-items: center; justify-content: center; white-space: pre-wrap; }
+        
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 20px; }
+        .nav-btn { background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s; }
+        .nav-btn:hover { background: white; color: var(--dark); }
+        .nav-btn:disabled { opacity: 0.3; cursor: default; }
+
         .correct-anim { background-color: var(--success) !important; }
         .wrong-anim { background-color: var(--error) !important; }
         .hidden { display: none !important; }
-        #restart-btn, #start-mission-btn { background: var(--secondary); color: var(--dark); border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 50px; cursor: pointer; margin-top: 20px; transition: background 0.3s, transform 0.2s; }
-        #restart-btn:hover, #start-mission-btn:hover { background: #00B1AD; transform: translateY(-2px); }
-        #home-screen { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; animation: fadeIn 1s ease-in-out; }
-        #home-screen h2 { color: var(--secondary); font-size: 2.5rem; margin-bottom: 1rem; animation: bounceIn 1.5s ease-out; }
-        #home-screen p { font-size: 1.3rem; margin-bottom: 2rem; line-height: 1.5; }
+
+        /* Screens */
+        #home-screen, #pause-screen { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        #home-screen { padding: 2rem; animation: fadeIn 1s ease-in-out; }
         .rocket { font-size: 5rem; animation: liftOff 2s ease-out infinite alternate; display: inline-block; margin-bottom: 1rem; color: var(--accent); }
+        
+        .pause-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 12, 30, 0.98); z-index: 100; border-radius: 20px; }
+        #start-mission-btn, #resume-btn, #restart-btn { background: var(--secondary); color: var(--dark); border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 50px; cursor: pointer; margin-top: 20px; font-weight: bold; }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 60% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }
         @keyframes liftOff { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
     </style>
 </head>
@@ -45,8 +57,8 @@
 <div class="container">
     <div id="home-screen">
         <span class="rocket">🚀</span>
-        <h2>Welcome, Space Cadet Kaya!</h2>
-        <p>Your mission: Explore the cosmos of knowledge and conquer the challenges!</p>
+        <h2>Welcome, Space Cadet!</h2>
+        <p>Your mission: Explore the cosmos of knowledge and conquer the MCAS challenges!</p>
         <button id="start-mission-btn">Start Mission</button>
     </div>
 
@@ -60,14 +72,22 @@
         <div id="quiz-area">
             <div id="pause-screen" class="pause-overlay hidden">
                 <h2>Mission Paused</h2>
-                <p>Kaya! Systems are in standby mode.</p>
-                <button id="resume-btn" onclick="togglePause()">Kaya are you ready to ▶ Resume Mission</button>
+                <p>Systems are in standby mode.</p>
+                <button id="resume-btn" onclick="togglePause()">▶ Resume Mission</button>
             </div>
+
             <div class="timer-text" id="timer-text">⏱️ Oxygen Left: 60s</div>
             <div class="timer-container"><div class="timer-bar" id="timer-bar"></div></div>
-            <div class="question-card"><div id="question-text">Initializing systems...</div></div>
+
+            <div class="question-card"><div id="question-text">Loading...</div></div>
             <div class="options-grid" id="options-container"></div>
+            
             <div class="feedback" id="feedback-text"></div>
+
+            <div class="nav-buttons">
+                <button id="prev-btn" class="nav-btn" onclick="prevQuestion()">&#8592; Previous</button>
+                <button id="next-btn" class="nav-btn" onclick="manualNext()">Next &#8594;</button>
+            </div>
         </div>
 
         <div id="results-area" class="hidden">
@@ -80,86 +100,202 @@
 </div>
 
 <script>
-    // Empty array to start
     let questions = [];
+    let userAnswers = []; // Array to track answered state per question
     let currentQ = 0;
-    let score = 0;
     let timeLeft = 60;
     const MAX_TIME = 60;
+    
     let timerInterval = null;
+    let hintInterval = null;
     let isPaused = false;
 
     // DOM Elements
-    const homeScreen = document.getElementById('home-screen');
-    const quizContainer = document.getElementById('quiz-container');
-    const startMissionBtn = document.getElementById('start-mission-btn');
-    const quizArea = document.getElementById('quiz-area');
-    const resultsArea = document.getElementById('results-area');
-    const scoreDisplay = document.getElementById('score-display');
-    const progressDisplay = document.getElementById('progress-display');
-    const questionText = document.getElementById('question-text');
-    const optionsContainer = document.getElementById('options-container');
-    const feedbackText = document.getElementById('feedback-text');
-    const timerText = document.getElementById('timer-text');
-    const timerBar = document.getElementById('timer-bar');
-    const finalScore = document.getElementById('final-score');
-    const message = document.getElementById('message');
-    const pauseBtn = document.getElementById('pause-btn');
-    const pauseScreen = document.getElementById('pause-screen');
+    const els = {
+        home: document.getElementById('home-screen'),
+        quizCont: document.getElementById('quiz-container'),
+        quizArea: document.getElementById('quiz-area'),
+        resultsArea: document.getElementById('results-area'),
+        questionText: document.getElementById('question-text'),
+        optionsCont: document.getElementById('options-container'),
+        feedback: document.getElementById('feedback-text'),
+        timerText: document.getElementById('timer-text'),
+        timerBar: document.getElementById('timer-bar'),
+        score: document.getElementById('score-display'),
+        progress: document.getElementById('progress-display'),
+        pauseBtn: document.getElementById('pause-btn'),
+        pauseScreen: document.getElementById('pause-screen'),
+        prevBtn: document.getElementById('prev-btn'),
+        nextBtn: document.getElementById('next-btn')
+    };
 
-    startMissionBtn.addEventListener('click', () => {
-        homeScreen.classList.add('hidden');
-        quizContainer.classList.remove('hidden');
+    document.getElementById('start-mission-btn').addEventListener('click', () => {
+        els.home.classList.add('hidden');
+        els.quizCont.classList.remove('hidden');
         fetchQuestions();
     });
 
     async function fetchQuestions() {
         try {
-            questionText.innerText = "Downloading Mission Data...";
+            els.questionText.innerText = "Downloading Mission Data...";
             const response = await fetch('questions.json');
             if (!response.ok) throw new Error("Mission Aborted: Data Link Failed");
             questions = await response.json();
             
-            // Optional: Shuffle questions here if you want
-            // questions.sort(() => Math.random() - 0.5);
+            // Initialize user answers array with nulls
+            userAnswers = new Array(questions.length).fill(null);
             
             initGame();
         } catch (error) {
-            questionText.innerText = "❌ Error loading questions. Please refresh.";
+            els.questionText.innerText = "❌ Error loading questions. Please refresh.";
             console.error(error);
         }
     }
 
     function initGame() {
         currentQ = 0;
-        score = 0;
-        quizArea.classList.remove('hidden');
-        resultsArea.classList.add('hidden');
-        pauseBtn.classList.remove('hidden'); 
+        els.quizArea.classList.remove('hidden');
+        els.resultsArea.classList.add('hidden');
+        els.pauseBtn.classList.remove('hidden');
         updateStats();
         loadQuestion();
     }
 
-    function togglePause() {
-        isPaused = !isPaused;
-        if (isPaused) {
-            clearInterval(timerInterval);
-            pauseScreen.classList.remove('hidden');
-            pauseBtn.innerText = "▶ Resume";
+    function loadQuestion() {
+        // Clear all timers immediately
+        clearInterval(timerInterval);
+        clearInterval(hintInterval);
+        
+        const q = questions[currentQ];
+        els.questionText.innerText = q.question;
+        els.optionsCont.innerHTML = '';
+        els.feedback.innerText = "";
+        
+        // Check if already answered
+        const hasAnswered = userAnswers[currentQ] !== null;
+
+        q.options.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'option';
+            btn.innerText = opt;
+            
+            if (hasAnswered) {
+                btn.disabled = true;
+                // Re-apply visual state
+                if (index === q.correct) btn.classList.add('correct-anim');
+                if (userAnswers[currentQ] === index && index !== q.correct) btn.classList.add('wrong-anim');
+            } else {
+                btn.onclick = () => checkAnswer(index, btn);
+            }
+            
+            els.optionsCont.appendChild(btn);
+        });
+
+        // Navigation Button States
+        els.prevBtn.disabled = (currentQ === 0);
+        els.nextBtn.innerText = (currentQ === questions.length - 1) ? "Finish" : "Next \u2192";
+
+        // Timer Logic: Only run if NOT paused and NOT answered
+        if (!hasAnswered) {
+            els.timerText.style.visibility = 'visible';
+            els.timerBar.parentElement.style.visibility = 'visible';
+            resetTimer();
         } else {
-            startCountdown();
-            pauseScreen.classList.add('hidden');
-            pauseBtn.innerText = "⏸️ Pause";
+            // If answered, hide timer stuff and show previous feedback result
+            els.timerText.style.visibility = 'hidden';
+            els.timerBar.parentElement.style.visibility = 'hidden';
+            
+            // Show simple status
+            if (userAnswers[currentQ] === q.correct) {
+                els.feedback.innerText = "✅ Answered Correctly";
+                els.feedback.style.color = "#00b894";
+            } else {
+                els.feedback.innerText = "❌ Answered Incorrectly";
+                els.feedback.style.color = "#d63031";
+            }
+        }
+        
+        updateStats();
+    }
+
+    function checkAnswer(selected, btnElement) {
+        clearInterval(timerInterval); // Stop timer
+        els.pauseBtn.disabled = true;
+
+        // Save Answer
+        userAnswers[currentQ] = selected;
+
+        // Disable buttons
+        const buttons = document.querySelectorAll('.option');
+        buttons.forEach(b => b.disabled = true);
+
+        const q = questions[currentQ];
+
+        if (selected === q.correct) {
+            btnElement.classList.add('correct-anim');
+            els.feedback.innerText = "✅ Correct! Great job!";
+            els.feedback.style.color = "#00b894";
+            
+            setTimeout(autoAdvance, 1500);
+        } else {
+            btnElement.classList.add('wrong-anim');
+            
+            // 30 Second Hint Timer
+            let waitTime = 30;
+            updateHintText(q.hint, waitTime);
+            
+            hintInterval = setInterval(() => {
+                waitTime--;
+                if (waitTime <= 0) {
+                    clearInterval(hintInterval);
+                    autoAdvance();
+                } else {
+                    updateHintText(q.hint, waitTime);
+                }
+            }, 1000);
+        }
+        updateStats();
+    }
+
+    function updateHintText(hint, time) {
+        els.feedback.innerText = `💡 Hint: ${hint}\n(Next question in ${time}s)`;
+        els.feedback.style.color = "#fab1a0";
+    }
+
+    function manualNext() {
+        if (currentQ < questions.length - 1) {
+            currentQ++;
+            loadQuestion();
+        } else {
+            showResults();
         }
     }
 
+    function autoAdvance() {
+        // Only auto-advance if we haven't manually moved away
+        // We can check this if needed, but simple is usually fine.
+        if (currentQ < questions.length - 1) {
+            currentQ++;
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentQ > 0) {
+            currentQ--;
+            loadQuestion();
+        }
+    }
+
+    // --- Timer System ---
     function resetTimer() {
-        clearInterval(timerInterval);
         timeLeft = MAX_TIME;
         isPaused = false;
-        pauseScreen.classList.add('hidden');
-        pauseBtn.innerText = "⏸️ Pause";
-        pauseBtn.disabled = false;
+        els.pauseScreen.classList.add('hidden');
+        els.pauseBtn.innerText = "⏸️ Pause";
+        els.pauseBtn.disabled = false;
         updateTimerVisuals();
         startCountdown();
     }
@@ -177,81 +313,70 @@
     }
 
     function updateTimerVisuals() {
-        timerText.innerText = `⏱️ Oxygen Left: ${timeLeft}s`;
+        els.timerText.innerText = `⏱️ Oxygen Left: ${timeLeft}s`;
         const percentage = (timeLeft / MAX_TIME) * 100;
-        timerBar.style.width = `${percentage}%`;
-        if (percentage > 50) timerBar.style.backgroundColor = "#00b894";
-        else if (percentage > 20) timerBar.style.backgroundColor = "#fdcb6e";
-        else timerBar.style.backgroundColor = "#d63031";
+        els.timerBar.style.width = `${percentage}%`;
+        
+        if (percentage > 50) els.timerBar.style.backgroundColor = "#00b894";
+        else if (percentage > 20) els.timerBar.style.backgroundColor = "#fdcb6e";
+        else els.timerBar.style.backgroundColor = "#d63031";
     }
 
     function handleTimeOut() {
+        // Mark as incorrect (using -1 to signify timeout/skip)
+        userAnswers[currentQ] = -1; 
+        
         const buttons = document.querySelectorAll('.option');
         buttons.forEach(b => b.disabled = true);
-        pauseBtn.disabled = true;
-        feedbackText.innerText = "⌛ Time's Up!";
-        feedbackText.style.color = "#d63031";
-        setTimeout(nextQuestion, 2000);
+        els.pauseBtn.disabled = true;
+        els.feedback.innerText = "⌛ Time's Up!";
+        els.feedback.style.color = "#d63031";
+        setTimeout(autoAdvance, 2000);
     }
 
-    function loadQuestion() {
-        const q = questions[currentQ];
-        questionText.innerText = q.question;
-        feedbackText.innerText = "";
-        optionsContainer.innerHTML = '';
-        q.options.forEach((opt, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'option';
-            btn.innerText = opt;
-            btn.onclick = () => checkAnswer(index, btn);
-            optionsContainer.appendChild(btn);
-        });
-        resetTimer();
-    }
-
-    function checkAnswer(selected, btnElement) {
-        clearInterval(timerInterval);
-        pauseBtn.disabled = true;
-        const buttons = document.querySelectorAll('.option');
-        buttons.forEach(b => b.disabled = true);
-
-        if (selected === questions[currentQ].correct) {
-            score++;
-            btnElement.classList.add('correct-anim');
-            feedbackText.innerText = "✅ Correct! Great job!";
-            feedbackText.style.color = "#00b894";
-            setTimeout(nextQuestion, 1500);
+    function togglePause() {
+        isPaused = !isPaused;
+        if (isPaused) {
+            clearInterval(timerInterval);
+            clearInterval(hintInterval);
+            els.pauseScreen.classList.remove('hidden');
+            els.pauseBtn.innerText = "▶ Resume";
         } else {
-            btnElement.classList.add('wrong-anim');
-            feedbackText.innerText = "💡 Hint: " + questions[currentQ].hint;
-            feedbackText.style.color = "#fab1a0";
-            setTimeout(nextQuestion, 5000);
-        }
-        updateStats();
-    }
-
-    function nextQuestion() {
-        currentQ++;
-        if (currentQ < questions.length) {
-            loadQuestion();
-        } else {
-            showResults();
+            // Only resume timer if question is unanswered
+            if (userAnswers[currentQ] === null) {
+                startCountdown();
+            }
+            els.pauseScreen.classList.add('hidden');
+            els.pauseBtn.innerText = "⏸️ Pause";
         }
     }
 
     function updateStats() {
-        scoreDisplay.innerText = `⭐ Score: ${score}`;
-        progressDisplay.innerText = `Mission: ${Math.min(currentQ + 1, questions.length)}/${questions.length}`;
+        // Calculate score based on userAnswers array
+        const currentScore = userAnswers.reduce((acc, answer, index) => {
+            return acc + (answer === questions[index].correct ? 1 : 0);
+        }, 0);
+
+        els.score.innerText = `⭐ Score: ${currentScore}`;
+        els.progress.innerText = `Mission: ${currentQ + 1}/${questions.length}`;
     }
 
     function showResults() {
         clearInterval(timerInterval);
-        quizArea.classList.add('hidden');
-        resultsArea.classList.remove('hidden');
-        pauseBtn.classList.add('hidden');
-        finalScore.innerText = `You scored ${score} out of ${questions.length}`;
-        const msg = score > (questions.length * 0.7) ? "🌟 Astronaut Status: COMMANDER!" : "👍 Good practice! Ready for liftoff!";
-        message.innerText = msg;
+        clearInterval(hintInterval);
+        
+        // Recalculate final score one last time
+        const finalScoreVal = userAnswers.reduce((acc, answer, index) => {
+            return acc + (answer === questions[index].correct ? 1 : 0);
+        }, 0);
+
+        els.quizArea.classList.add('hidden');
+        els.resultsArea.classList.remove('hidden');
+        els.pauseBtn.classList.add('hidden');
+        document.getElementById('final-score').innerText = `You scored ${finalScoreVal} out of ${questions.length}`;
+        
+        const msg = finalScoreVal > (questions.length * 0.7) ? "🌟 Astronaut Status: COMMANDER!" : "👍 Good practice! Ready for liftoff!";
+        document.getElementById('message').innerText = msg;
     }
 </script>
 </body>
