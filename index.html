@@ -280,21 +280,26 @@
     let sessionQuestions = [];   
     let solvedIndices = [];      
 
-    // --- 2. AUTH FLOW ---
+// --- 2. AUTH FLOW ---
     auth.onAuthStateChanged(user => {
         if (user) {
             currentUser = user;
             db.collection('users').doc(user.uid).get().then(doc => {
+                // FIX: Hide login screen regardless of whether they are new or returning
+                document.getElementById('login-screen').classList.add('hidden');
+
                 if (doc.exists && doc.data().callsign) {
+                    // Returning User: Load profile immediately
                     userCallsign = doc.data().callsign;
                     loadUserProfile(doc.data());
                 } else {
-                    document.getElementById('login-screen').classList.add('hidden');
+                    // New User: Show setup screen
                     document.getElementById('setup-screen').classList.remove('hidden');
                 }
             });
         } else {
             currentUser = null;
+            // No user? Show login, hide everything else
             document.getElementById('login-screen').classList.remove('hidden');
             document.getElementById('home-screen').classList.add('hidden');
             document.getElementById('setup-screen').classList.add('hidden');
